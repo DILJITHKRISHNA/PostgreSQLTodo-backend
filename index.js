@@ -4,11 +4,12 @@ const cors = require('cors')
 const pool = require('./db')
 
 //middleware
-app.use(cors({
-    origin: 'https://xerotodo-rosy.vercel.app',
-    methods: ['GET','POST','PUT', 'PATCH'],
-    credentials: true
-}))
+// app.use(cors({
+//     origin: 'https://xerotodo-rosy.vercel.app/',
+//     methods: ['GET','POST','PUT', 'PATCH'],
+//     credentials: true
+// }))
+app.use(cors({}))
 app.use(express.json()) //req.body
 
 //ROUTES
@@ -18,7 +19,6 @@ app.use(express.json()) //req.body
 app.post('/todos', async (req, res) => {
     try {
         const description = req.body
-        console.log(description.display);
         const newTodo = await pool.query(
             "INSERT INTO todo (description) VALUES($1) RETURNING *",
             [description.display]
