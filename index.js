@@ -52,9 +52,9 @@ app.get("/todos/:id", async (req, res) => {
 app.put('/todos/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const { description } = req.body
-        const updateTodo = await pool.query(`UPDATE todo SET description = $1 WHERE todo_id = $2`, [description, id])
-        res.json(updateTodo, "Todo was updated")
+        const { Description } = req.body
+        const updateTodo = await pool.query(`UPDATE todo SET description = $1 WHERE todo_id = $2`, [Description, id])
+        res.json({success:true, updateTodo, message:"Todo was updated"})
     } catch (error) {
         console.error(error.message)
     }
