@@ -4,7 +4,11 @@ const cors = require('cors')
 const pool = require('./db')
 
 //middleware
-app.use(cors())
+app.use(cors({
+    origin: 'https://xerotodo-rosy.vercel.app',
+    methods: ['GET','POST','PUT', 'PATCH'],
+    credentials: true
+}))
 app.use(express.json()) //req.body
 
 //ROUTES
